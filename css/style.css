@@ -120,6 +120,15 @@ textarea {
   max-width: 80rem;
   margin: auto;
   line-height: 1.6; }
+  .heading-sec__sub2 {
+    display: block;
+    text-align: left;
+    color: #454444;
+    font-size: 2rem;
+    font-weight: 500;
+    max-width: 80rem;
+    margin: auto;
+    line-height: 1.6; }
   @media only screen and (max-width: 37.5em) {
     .heading-sec__sub {
       font-size: 1.8rem; } }
@@ -293,7 +302,7 @@ textarea {
   .projects__row-img-cont {
     overflow: hidden; }
   .projects__row-img {
-    width: 500px;
+    width: 100%;
     display: block;
     object-fit: cover; }
   .projects__row-content {
