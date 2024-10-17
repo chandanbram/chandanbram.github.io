@@ -204,122 +204,132 @@ textarea {
   display: none; }
   .home-hero {
     display: flex; /* Use flexbox for layout */
-    flex-direction: column; /* Stack elements vertically for mobile */
     align-items: center; /* Center items vertically */
     color: #fff;
     background: linear-gradient(to right, rgba(38, 33, 183, 0.8), rgba(11, 74, 129, 0.8)), url(../assets/svg/Brick@1x-5.0s-1536px-730px.svg);
     background-position: center;
-    background-size: cover; /* Ensure background covers the entire area */
-    height: 100vh; /* Full viewport height */
-    min-height: 100vh; /* Ensure it covers at least the viewport height */
+    height: 60vh;
+    min-height: 75rem;
+    max-height: 100rem;
     position: relative;
-    padding: 2rem; /* Add padding for better spacing */
-  }
-  
-  .home-hero__image {
-    flex: 0 0 auto; /* Allow image to adjust based on content */
+}
+
+.home-hero__image {
+    flex: 0 0 40%; /* 40% width for image */
     display: flex;
     justify-content: center; /* Center image horizontally */
     align-items: center; /* Center image vertically */
     padding: 2rem; /* Add padding if needed */
-    margin-top: 6rem; /* Add margin to bring image below navbar */
-  }
-  
-  .home-hero__img {
-    max-width: 60%; /* Reduce image size for mobile */
+    padding-left: 10rem; /* Add left padding for desktop */
+}
+
+.home-hero__img {
+    max-width: 80%; /* Limit image size */
     max-height: 100%; /* Set a maximum height */
     height: auto; /* Maintain aspect ratio */
     border-radius: 50%; /* Make the image oval */
-  }
-  
-  .home-hero__content {
-    flex: 0 0 auto; /* Allow content to adjust based on content */
+}
+
+.home-hero__content {
+    flex: 0 0 60%; /* 60% width for content */
     position: relative;
     padding: 2rem; /* Add padding for better spacing */
-    text-align: center; /* Center text */
-  }
-  
-  .home-hero__socials {
+}
+
+@media only screen and (max-width: 37.5em) {
+    .home-hero {
+        flex-direction: column; /* Stack items vertically on mobile */
+        align-items: center; /* Center items */
+        height: 100vh; /* Set height to full viewport height */
+        padding-bottom: 2rem; /* Add bottom padding for spacing */
+        background-attachment: fixed; /* Ensure the background covers the entire section */
+    }
+
+    .home-hero__image {
+        padding-left: 0; /* Remove left padding for mobile */
+        margin-bottom: 2rem; /* Add margin below image for spacing */
+        flex: 0 0 auto; /* Reset flex for stacking */
+        padding-top: 8rem; /* Increase top padding for image to prevent overlap with navbar */
+    }
+
+    .home-hero__img {
+        width: 70%; /* Reduce image width slightly for mobile */
+        height: auto; /* Maintain aspect ratio */
+        max-height: 250px; /* Set a maximum height to prevent excessive shrinking */
+    }
+
+    .home-hero__content {
+        text-align: center; /* Center text */
+        padding: 0; /* Remove padding for mobile */
+        flex: 0 0 auto; /* Reset flex for stacking */
+    }
+
+    .heading-primary {
+        font-size: 1.7rem; /* Increase size of the heading for mobile */
+    }
+}
+
+.home-hero__socials {
     position: absolute;
     top: 50%;
     border: 2px solid #eee;
     border-left: 2px solid #eee;
     transform: translateY(-50%);
-  }
-  
-  .home-hero__mouse-scroll-cont {
+}
+
+@media only screen and (max-width: 56.25em) {
+    .home-hero__socials {
+        display: none; 
+    }
+}
+
+.home-hero__mouse-scroll-cont {
     position: absolute;
     bottom: 5%;
     left: 50%;
     transform: translateX(-50%);
-  }
-  
-  .home-hero__social {
-    width: 5rem;
-  }
-  
-  .home-hero__social-icon-link {
+}
+
+@media only screen and (max-width: 37.5em) {
+    .home-hero__mouse-scroll-cont {
+        display: none; 
+    }
+}
+
+.home-hero__social {
+    width: 5rem; 
+}
+
+.home-hero__social-icon-link {
     width: 100%;
     display: block;
     padding: 1.2rem;
     border-bottom: 2px solid #eee;
-    transition: background 0.3s;
-  }
-  
-  .home-hero__social-icon-link:hover {
-    background: rgba(255, 255, 255, 0.1);
-  }
-  
-  .home-hero__social-icon-link--bd-none {
-    border-bottom: 0;
-  }
-  
-  .home-hero__social-icon {
-    width: 100%;
-  }
-  
-  .home-hero__info {
+    transition: background .3s; 
+}
+
+.home-hero__social-icon-link:hover {
+    background: rgba(255, 255, 255, 0.1); 
+}
+
+.home-hero__social-icon-link--bd-none {
+    border-bottom: 0; 
+}
+
+.home-hero__social-icon {
+    width: 100%; 
+}
+
+.home-hero__info {
     margin: 3rem auto 0 auto;
-    max-width: 80rem;
-  }
-  
-  .home-hero__cta {
+    max-width: 80rem; 
+}
+
+.home-hero__cta {
     margin-top: 5rem;
-    text-align: center;
-  }
-  
-  .heading-primary {
-    font-size: 4rem; /* Default font size for desktop */
-  }
-  
-  @media only screen and (max-width: 56.25em) {
-    .home-hero__socials {
-      display: none; /* Hide social icons */
-    }
-  }
-  
-  @media only screen and (max-width: 37.5em) {
-    .home-hero__image {
-      margin-bottom: 2rem; /* Add margin for spacing */
-      margin-top: 6rem; /* Further increase margin to bring image below navbar */
-    }
-  
-    .home-hero__img {
-      max-width: 60%; /* Reduce image size for mobile */
-    }
-  
-    .home-hero__content {
-      padding: 0; /* Remove padding for mobile */
-    }
-  
-    .home-hero__mouse-scroll-cont {
-      display: none; /* Hide mouse scroll indicator */
-    }
-  
-    .heading-primary {
-      font-size: 2.5rem; /* Reduce font size for mobile */
-    }
-  }
+    text-align: center; 
+}
+
   
   .about {
     background: #fafafa;
@@ -1216,13 +1226,12 @@ textarea {
 }
 
 .left .logo {
-    height: 32px; /* Adjust as needed for desktop */
+    height: 32px; /* Default logo size for desktop */
 }
 
 .middle {
     text-align: center;
-    font-size: 1.5rem;
-    flex: 1; /* Allow middle to grow */
+    font-size: 1.5rem; /* Default font size for desktop */
 }
 
 .right {
@@ -1234,38 +1243,22 @@ textarea {
     height: 30px; /* Adjust as needed */
 }
 
+/* Mobile View Adjustments */
 @media only screen and (max-width: 37.5em) {
-    .footer-container {
-        flex-direction: row;
-        justify-content: space-between;
-    }
-
-    .middle {
-        font-size: 1rem;
-        text-align: right; /* Align text to the right */
-        flex: 1; /* Allow middle to grow */
+    .middle .all-rights {
+        display: none; /* Hide "All rights reserved." in mobile view */
     }
 
     .right {
-        display: none; /* Hide social icons */
+        display: none; /* Hide social icons in mobile view */
     }
 
-    .left {
-        flex: 0 0 auto; /* Ensure logo stays on the left */
-    }
-
-    .middle .all-rights {
-        display: none; /* Hide "All rights reserved." text */
-    }
-
-    .middle p {
-        margin: 0; /* Remove default margin */
-        padding-left: 30px; /* Add some space between logo and copyright text */
-    }
-
-    /* Reduce logo size in mobile view */
     .left .logo {
-        height: 24px; /* Adjust the size as needed for mobile */
+        height: 24px; /* Reduced logo size in mobile view */
+    }
+
+    .middle {
+        font-size: 1.2rem; /* Reduced font size in mobile view */
     }
 }
 
