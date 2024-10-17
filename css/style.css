@@ -202,46 +202,41 @@ textarea {
 
 .d-none {
   display: none; }
-
   .home-hero {
     display: flex; /* Use flexbox for layout */
+    flex-direction: column; /* Stack elements vertically for mobile */
     align-items: center; /* Center items vertically */
     color: #fff;
     background: linear-gradient(to right, rgba(38, 33, 183, 0.8), rgba(11, 74, 129, 0.8)), url(../assets/svg/Brick@1x-5.0s-1536px-730px.svg);
     background-position: center;
-    height: 60vh;
-    min-height: 75rem;
-    max-height: 100rem;
+    background-size: cover; /* Ensure background covers the entire area */
+    height: 100vh; /* Full viewport height */
+    min-height: 100vh; /* Ensure it covers at least the viewport height */
     position: relative;
+    padding: 2rem; /* Add padding for better spacing */
   }
   
   .home-hero__image {
-    flex: 0 0 40%; /* 40% width for image */
+    flex: 0 0 auto; /* Allow image to adjust based on content */
     display: flex;
     justify-content: center; /* Center image horizontally */
     align-items: center; /* Center image vertically */
     padding: 2rem; /* Add padding if needed */
-    padding-left: 10rem; /* Add left padding for desktop */
+    margin-top: 6rem; /* Add margin to bring image below navbar */
   }
   
   .home-hero__img {
-    max-width: 80%; /* Limit image size */
+    max-width: 60%; /* Reduce image size for mobile */
     max-height: 100%; /* Set a maximum height */
     height: auto; /* Maintain aspect ratio */
     border-radius: 50%; /* Make the image oval */
   }
   
   .home-hero__content {
-    flex: 0 0 60%; /* 60% width for content */
+    flex: 0 0 auto; /* Allow content to adjust based on content */
     position: relative;
     padding: 2rem; /* Add padding for better spacing */
-  }
-  
-  @media only screen and (max-width: 37.5em) {
-    .home-hero {
-      height: unset;
-      min-height: unset; 
-    }
+    text-align: center; /* Center text */
   }
   
   .home-hero__socials {
@@ -252,12 +247,6 @@ textarea {
     transform: translateY(-50%);
   }
   
-  @media only screen and (max-width: 56.25em) {
-    .home-hero__socials {
-      display: none; 
-    }
-  }
-  
   .home-hero__mouse-scroll-cont {
     position: absolute;
     bottom: 5%;
@@ -265,14 +254,8 @@ textarea {
     transform: translateX(-50%);
   }
   
-  @media only screen and (max-width: 37.5em) {
-    .home-hero__mouse-scroll-cont {
-      display: none; 
-    }
-  }
-  
   .home-hero__social {
-    width: 5rem; 
+    width: 5rem;
   }
   
   .home-hero__social-icon-link {
@@ -280,29 +263,62 @@ textarea {
     display: block;
     padding: 1.2rem;
     border-bottom: 2px solid #eee;
-    transition: background .3s; 
+    transition: background 0.3s;
   }
   
   .home-hero__social-icon-link:hover {
-    background: rgba(255, 255, 255, 0.1); 
+    background: rgba(255, 255, 255, 0.1);
   }
   
   .home-hero__social-icon-link--bd-none {
-    border-bottom: 0; 
+    border-bottom: 0;
   }
   
   .home-hero__social-icon {
-    width: 100%; 
+    width: 100%;
   }
   
   .home-hero__info {
     margin: 3rem auto 0 auto;
-    max-width: 80rem; 
+    max-width: 80rem;
   }
   
   .home-hero__cta {
     margin-top: 5rem;
-    text-align: center; 
+    text-align: center;
+  }
+  
+  .heading-primary {
+    font-size: 4rem; /* Default font size for desktop */
+  }
+  
+  @media only screen and (max-width: 56.25em) {
+    .home-hero__socials {
+      display: none; /* Hide social icons */
+    }
+  }
+  
+  @media only screen and (max-width: 37.5em) {
+    .home-hero__image {
+      margin-bottom: 2rem; /* Add margin for spacing */
+      margin-top: 6rem; /* Further increase margin to bring image below navbar */
+    }
+  
+    .home-hero__img {
+      max-width: 60%; /* Reduce image size for mobile */
+    }
+  
+    .home-hero__content {
+      padding: 0; /* Remove padding for mobile */
+    }
+  
+    .home-hero__mouse-scroll-cont {
+      display: none; /* Hide mouse scroll indicator */
+    }
+  
+    .heading-primary {
+      font-size: 2.5rem; /* Reduce font size for mobile */
+    }
   }
   
   .about {
@@ -314,6 +330,7 @@ textarea {
     margin: 50px auto; /* Center the container */
     display: flex; /* Flex container for side-by-side layout */
     justify-content: space-between; /* Space between About Me and Skills */
+    flex-wrap: wrap; /* Allow wrapping on smaller screens */
   }
   
   .about-me {
@@ -409,9 +426,11 @@ textarea {
   
   @media (max-width: 480px) {
     .skills-grid {
-      grid-template-columns: 1fr; /* Full width skill boxes on very small screens */
+      grid-template-columns: repeat(2, 1fr); /* 2 columns on very small screens */
+      gap: 10px; /* Reduce gap for smaller screens */
     }
   }
+  
   
 .projects__row {
   display: grid;
@@ -676,7 +695,7 @@ textarea {
       font-size: 1.4rem;
       color: #ffcb69; /* Warm accent color for links */
       text-decoration: none;
-      margin: 0 15px;
+      margin: 0 5px; /* Reduced margin to bring links closer together */
   }
   
   /* Hover effect on links */
@@ -695,13 +714,25 @@ textarea {
       .paper-card {
           width: 100%; /* Full width for cards in single column on small screens */
       }
+  
+      /* Ensure "Abstract" and "Full Paper" stay on the same line */
+      .paper-card a {
+          margin: 0 5px; /* Adjusted margin to reduce gap */
+      }
+  
+      /* Stack the other content vertically */
+      .paper-card h2, .paper-card p {
+          margin-bottom: 10px; /* Reduced margin for better spacing */
+      }
   }
+  
   .abstract-link {
-    color: #007BFF;
-    cursor: pointer;
-    text-decoration: underline;
-    font-size: 1.8rem;
-}
+      color: #007BFF;
+      cursor: pointer;
+      text-decoration: underline;
+      font-size: 1.8rem;
+  }
+  
 .popup {
     display: none;
     position: fixed;
@@ -857,33 +888,44 @@ textarea {
       background-color: #0056b3; /* Darker shade on hover */
   }
  
-  .achieve {
-    display: flex; 
-    align-items: center; 
-    color: #fff;
-    background:  #fafafa ;
-    background-position: center;
-    background-size: cover; /* Ensure the background covers the entire section */
-    height: 50vh; /* Temporarily increase to see effect */
-    max-height: 100rem;
-    position: relative;
+/* Main Achievement Section */
+.achieve {
+  display: flex; 
+  flex-direction: column; /* Allow vertical stacking of content */
+  align-items: center; 
+  color: #fff;
+  background: #fafafa; /* Background color for the section */
+  background-position: center;
+  background-size: cover; /* Ensure the background covers the entire section */
+  margin-bottom: 20px; /* Reduced margin to separate from the next section */
+  margin-top: 20px; /* Reduced margin at the top */
+  padding: 10px; /* Reduced padding for spacing */
+  position: relative;
 }
 
+/* Container for Achievements */
+.achievements-container {
+  display: flex;
+  flex-direction: column; /* Stack elements in mobile view */
+  align-items: center; /* Center items */
+  max-width: 1200px; /* Limit the maximum width */
+  margin: auto; /* Center the container */
+}
 
-
+/* Flex layout for desktop view */
+@media (min-width: 768px) {
   .achievements-container {
-    display: flex;
-    align-items: flex-start; /* Align items to the top */
-    max-width: 1200px; /* Limit the maximum width */
-    margin: auto; /* Center the container */
-    padding: 20px; /* Internal padding */
+      flex-direction: row; /* Side-by-side layout for desktop view */
+  }
 }
 
+/* Icon styling */
 .achievements-icon {
-    flex: 1; /* Allow icon to take 1 part of the space */
-    display: flex;
-    justify-content: center; /* Center icon horizontally */
-    align-items: flex-start; /* Align icon to the top */
+  flex: 1; /* Allow icon to take 1 part of the space */
+  display: flex;
+  justify-content: center; /* Center icon horizontally */
+  align-items: flex-start; /* Align icon to the top */
+  margin-bottom: 20px; /* Space below icons */
 }
 
 .cup-icon {
@@ -897,120 +939,138 @@ textarea {
   z-index: 1; /* Bring to front */
 }
 
+/* Content styling */
 .achievements-content {
-    flex: 2; /* Allow content to take 2 parts of the space */
-    padding-left: 20px; /* Space between icon and content */
+  flex: 2; /* Allow content to take 2 parts of the space */
+  padding-left: 20px; /* Space between icon and content */
 }
 
 .heading-sec__main {
-    font-size: 2.5rem; /* Size for main heading */
-    color: #333; /* Main heading color */
-    text-align: center; /* Centering the heading */
+  font-size: 2.5rem; /* Size for main heading */
+  color: #333; /* Main heading color */
+  text-align: center; /* Centering the heading */
 }
 
 .heading-sec__sub2 {
-    font-size: 1.9rem; /* Size for subtext */
-    color: #555; /* Subtext color */
-    line-height: 1.5; /* Better line spacing */
-    font-weight: bold;
+  font-size: 1.9rem; /* Size for subtext */
+  color: #555; /* Subtext color */
+  line-height: 1.5; /* Better line spacing */
+  font-weight: bold;
 }
 
+/* Individual Achievement Item */
 .achievement-item {
-    margin: 10px 0; /* Space between each achievement */
-    text-align: left; /* Align text to the left */
+  margin: 10px 0; /* Space between each achievement */
+  text-align: left; /* Align text to the left */
 }
 
+/* Achievement Number */
 .achievement-number {
-    font-weight: bold; /* Highlight achievement number */
-    color: #007BFF; /* Change number color */
+  font-weight: bold; /* Highlight achievement number */
+  color: #007BFF; /* Change number color */
 }
 
+/* Link styling */
 .know-more-link {
-    color: #007BFF; /* Link color */
-    cursor: pointer; /* Pointer on hover */
-    text-decoration: underline; /* Underline for links */
-}
-  .achievement-link {
-    color: #007BFF;
-    cursor: pointer;
-    text-decoration: underline;
-    font-size: 1.2rem;
+  color: #007BFF; /* Link color */
+  cursor: pointer; /* Pointer on hover */
+  text-decoration: underline; /* Underline for links */
 }
 
+/* Popup for detailed achievement */
 .achievement-popup {
-    display: none;
-    position: fixed;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    width: 80%;
-    max-width: 800px;
-    padding: 20px;
-    background-color: #fff;
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
-    z-index: 1000;
-    overflow: hidden; /* Prevent overflow from affecting the popup */
-    border-radius: 10px;
-    border: 1px solid #ccc;
+  display: none; /* Hidden by default */
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 80%;
+  max-width: 800px;
+  padding: 20px;
+  background-color: #fff;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+  z-index: 1000; /* Bring popup to the front */
+  overflow: hidden; /* Prevent overflow from affecting the popup */
+  border-radius: 10px;
+  border: 1px solid #ccc;
 }
 
+/* Popup Header */
 .achievement-popup-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    border-bottom: 2px solid #007BFF;
-    padding-bottom: 10px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 2px solid #007BFF;
+  padding-bottom: 10px;
 }
 
 .achievement-popup-header h3 {
-    margin: 0;
-    font-size: 2rem;
-    color: #007BFF;
+  margin: 0;
+  font-size: 2rem;
+  color: #007BFF;
 }
 
+/* Close button for popup */
 .close-btn {
-    background: none;
-    border: none;
-    font-size: 4rem;
-    cursor: pointer;
-    color: #FF0000;
+  background: none;
+  border: none;
+  font-size: 4rem;
+  cursor: pointer;
+  color: #FF0000; /* Close button color */
 }
 
+/* Popup Content */
 .achievement-popup-content {
-    margin-top: 20px;
-    font-size: 1.5rem;
-    max-height: 80vh; /* Set max height for content area */
-    overflow-y: auto; /* Enable vertical scrolling */
+  margin-top: 20px;
+  font-size: 1.5rem;
+  max-height: 80vh; /* Set max height for content area */
+  overflow-y: auto; /* Enable vertical scrolling */
 }
 
 .achievement-popup-content p {
-    margin: 20px 0;
+  margin: 20px 0;
 }
 
 .achievement-popup-content img {
-    max-width: 100%;
-    border-radius: 10px;
+  max-width: 100%;
+  border-radius: 10px;
 }
 
+/* Know More Link */
 .know-more-link {
-    display: inline-block;
-    margin-left: 20px;
-    font-size: 1.6rem;
-    color: #007BFF;
-    text-decoration: underline;
-    cursor: pointer;
+  display: inline-block;
+  margin-left: 20px;
+  font-size: 1.6rem;
+  color: #007BFF;
+  text-decoration: underline;
+  cursor: pointer;
 }
 
+/* Overlay for Popup */
 .overlay {
-    display: none;
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.5);
-    z-index: 500;
+  display: none; /* Hidden by default */
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 500;
 }
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .achievements-container {
+      flex-direction: column; /* Stack elements vertically on mobile */
+      align-items: center; /* Center items */
+  }
+  
+  .achievements-icon {
+      margin-bottom: 20px; /* Space between icon and achievements */
+  }
+}
+
+
 
 .header {
   position: fixed;
@@ -1143,7 +1203,7 @@ textarea {
       height: 100vh; /* Adjust as needed */
       font-size: 1.8rem;
   }
- footer {
+  footer {
     background-color: black;
     color: white;
     padding: 20px;
@@ -1156,12 +1216,13 @@ textarea {
 }
 
 .left .logo {
-    height: 32px; /* Adjust as needed */
+    height: 32px; /* Adjust as needed for desktop */
 }
 
 .middle {
     text-align: center;
     font-size: 1.5rem;
+    flex: 1; /* Allow middle to grow */
 }
 
 .right {
@@ -1173,6 +1234,42 @@ textarea {
     height: 30px; /* Adjust as needed */
 }
 
+@media only screen and (max-width: 37.5em) {
+    .footer-container {
+        flex-direction: row;
+        justify-content: space-between;
+    }
+
+    .middle {
+        font-size: 1rem;
+        text-align: right; /* Align text to the right */
+        flex: 1; /* Allow middle to grow */
+    }
+
+    .right {
+        display: none; /* Hide social icons */
+    }
+
+    .left {
+        flex: 0 0 auto; /* Ensure logo stays on the left */
+    }
+
+    .middle .all-rights {
+        display: none; /* Hide "All rights reserved." text */
+    }
+
+    .middle p {
+        margin: 0; /* Remove default margin */
+        padding-left: 30px; /* Add some space between logo and copyright text */
+    }
+
+    /* Reduce logo size in mobile view */
+    .left .logo {
+        height: 24px; /* Adjust the size as needed for mobile */
+    }
+}
+
+  
 .skills {
   display: flex;
   flex-wrap: wrap; }
