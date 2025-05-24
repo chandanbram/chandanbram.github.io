@@ -1091,22 +1091,28 @@ window.addEventListener('load', () => {
     messagesDiv.scrollTop = messagesDiv.scrollHeight;
 
     try {
-      const response = await fetch("https://chandubram--chandan_bot.hf.space/chat", {
+      const response = await fetch("https://chandubram--chandan_bot.hf.space/api/predict/", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
-          message: message,
-          system_message: "You are a friendly Chatbot.",
-          max_tokens: 512,
-          temperature: 0.7,
-          top_p: 0.95
+          data: [
+            message,
+            "You are a friendly Chatbot.",
+            512,
+            0.7,
+            0.95
+          ]
         })
       });
 
-      const data = await response.json();
-      console.log(data); // Check the structure
+      if (!response.ok) {
+        throw new Error(`Server error: ${response.status}`);
+      }
 
-      const botReply = typeof data === "string" ? data : data.response || data.data?.[0] || "Response not parsed.";
+      const data = await response.json();
+      console.log(data); // For debugging
+
+      const botReply = data.data?.[0] || "Sorry, no response received.";
       messagesDiv.innerHTML += `<div class="chat-bubble bot">${botReply}</div>`;
       messagesDiv.scrollTop = messagesDiv.scrollHeight;
 
@@ -1116,6 +1122,7 @@ window.addEventListener('load', () => {
     }
   }
 </script>
+
 
 
 
