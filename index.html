@@ -1089,20 +1089,21 @@
     input.value = "";
 
     try {
-      const response = await fetch("https://chandubram--chandan_bot.hf.space/api/predict/", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          data: [
-            message,
-            chatHistory,
-            "You are a friendly Chatbot.",
-            512,
-            0.7,
-            0.95
-          ]
-        })
-      });
+      const response = await fetch("https://chandubram--chandan-private-chatbot.hf.space/api/predict/", {
+  method: "POST",
+  headers: { "Content-Type": "application/json" },
+  body: JSON.stringify({
+    data: [
+      message,
+      chatHistory,
+      "You are Chandan-Bot, a formal and professional assistant. Answer ONLY based on the provided data and never generate information outside of it. If the information is not available, say: 'I'm sorry, but I do not have that information.' Always speak in the first person.",
+      512,
+      0.7,
+      0.95
+    ]
+  })
+});
+
 
       if (!response.ok) {
         throw new Error(`Server error: ${response.status}`);
