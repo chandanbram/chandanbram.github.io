@@ -1090,30 +1090,20 @@
 
     try {
       const response = await fetch("https://chandan-backend.onrender.com/api/predict", {
-  method: "POST",
-  headers: { "Content-Type": "application/json" },
-  body: JSON.stringify({
-    data: [
-      message,
-      chatHistory,
-      "You are Chandan-Bot, a formal and professional assistant. Answer ONLY based on the provided data and never generate information outside of it. If the information is not available, say: 'I'm sorry, but I do not have that information.' Always speak in the first person.",
-      512,
-      0.7,
-      0.95
-    ]
-  })
-});
-
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ message: message })
+      });
 
       if (!response.ok) {
         throw new Error(`Server error: ${response.status}`);
       }
 
       const data = await response.json();
-      const botReply = data.data?.[0] || "Sorry, no response received.";
+      const botReply = data.response || "Sorry, no response received.";
       appendMessage(botReply, 'bot');
 
-      // Update chat history for context
+      // Update chat history if needed later
       chatHistory.push([message, botReply]);
 
     } catch (error) {
